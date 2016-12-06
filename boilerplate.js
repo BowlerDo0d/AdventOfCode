@@ -1,4 +1,4 @@
-var moves = null;
+var input = null;
 
 var debug = false;
 
