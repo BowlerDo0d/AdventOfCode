@@ -1,7 +1,3 @@
-var input = null;
-
-var debug = false;
-
 function log(msg, value) {
     if (debug) {
         if (msg && (value || value === 0)) {
@@ -11,3 +7,6 @@ function log(msg, value) {
         }
     }
 }
+
+var input = null,
+    debug = false;
