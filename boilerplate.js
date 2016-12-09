@@ -8,5 +8,6 @@ function log(msg, value) {
     }
 }
 
-var input = null,
-    debug = false;
+var fs = require('fs'),
+    input = fs.readFileSync('./filename.txt', { encoding: 'utf-8' }).split('\n'),
+    debug = true;
