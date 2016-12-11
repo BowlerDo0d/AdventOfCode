@@ -9,7 +9,7 @@ function log(msg, value) {
 }
 
 var fs = require('fs'),
-    input = fs.readFileSync('./day9input.txt', { encoding: 'utf-8' }),
+    input = fs.readFileSync('./day9input.txt'),
     debug = false,
     decompressedString = '';
 
@@ -22,9 +22,9 @@ var fs = require('fs'),
 // input = '(27x12)(20x12)(13x14)(7x10)(1x12)A';
 // input = '(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN';
 
-input = input.replace(/[\s\n\t\r]/g, '');
+// input = input.replace(/[\s\n\t\r]/g, '');
 
-log(input);
+// log(input);
 
 function decompressString(str) {
     var decompString = '',
@@ -74,9 +74,55 @@ function decompressString(str) {
     return decompString;
 }
 
-decompressedString = decompressString(input);
+function decompressString2(buffer) {
+  var decompressCount = 0,
+    openParen = '('.charCodeAt(),
+    closingParen = ')'.charCodeAt(),
+    cursorPosition = 0,
+    nextOpenParenIndex = buffer.indexOf(openParen, cursorPosition),
+    answerFile = './day9input.txt',
+    closingParenIndex = null,
+    marker = null,
+    matches = null,
+    numOfChars = null,
+    repeatBy = null,
+    bufferToRepeat = null;
 
+  while (nextOpenParenIndex !== -1) {
+    decompressCount += nextOpenParenIndex - cursorPosition;
+    cursorPosition = nextOpenParenIndex;
+
+    closingParenIndex = buffer.indexOf(closingParen, cursorPosition) + 1;
+    marker = buffer.slice(cursorPosition, closingParenIndex).toString('utf-8');
+    matches = marker.match(/\((\d+)x(\d+)\)/);
+    numOfChars = parseInt(matches[1], 10);
+    repeatBy = parseInt(matches[2], 10);
+
+    log('Marker: ' + marker);
+    log('Matches: ' + matches);
+    log('Num of chars: ' + numOfChars);
+    log('Repeat by: ' + repeatBy);
+
+    bufferToRepeat = buffer.slice(closingParenIndex, closingParenIndex + numOfChars);
+    log('String to repeat: ' + bufferToRepeat.toString());
+
+    if (bufferToRepeat.indexOf(openParen, 0) > -1) {
+      decompressCount += decompressString2(bufferToRepeat) * repeatBy;
+    } else {
+      decompressCount += (bufferToRepeat.length * repeatBy);
+    }
+
+    cursorPosition = closingParenIndex + numOfChars;
+
+    nextOpenParenIndex = buffer.indexOf(openParen, cursorPosition);
+  }
+
+  decompressCount += buffer.length - cursorPosition;
+
+  return decompressCount;
+}
+
+// decompressedString = decompressString(input);
 // console.log(decompressedString);
-console.log(decompressedString.length);
 
-// fs.writeFileSync('./day9input.txt', decompressedString);
+console.log(decompressString2(input));
