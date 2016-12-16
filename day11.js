@@ -9,5 +9,5 @@ function log(msg, value) {
 }
 
 var fs = require('fs'),
-    input = fs.readFileSync('./day#input.txt', { encoding: 'utf-8' }).split('\n'),
+    input = fs.readFileSync('./day11input.txt', { encoding: 'utf-8' }).split('\n'),
     debug = true;
