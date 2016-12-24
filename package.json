@@ -1,0 +1,22 @@
+{
+  "name": "adventofcode2016",
+  "version": "1.0.0",
+  "description": "Solutions for the Advent of Code 2016 http://adventofcode.com",
+  "main": "boilerplate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BowlerDo0d/AdventOfCode.git"
+  },
+  "author": "BowlerDo0d",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BowlerDo0d/AdventOfCode/issues"
+  },
+  "homepage": "https://github.com/BowlerDo0d/AdventOfCode#readme",
+  "dependencies": {
+    "crypto": "0.0.3"
+  }
+}
