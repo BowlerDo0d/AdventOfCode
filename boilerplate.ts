@@ -19,7 +19,12 @@ class Boilerplate {
     }
 
     run() {
+        // Part 1
         this.log(this.input);
+    }
+
+    run2() {
+        // Part 2
     }
 }
 
