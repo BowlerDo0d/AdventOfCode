@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 class Boilerplate {
     private day = 0;
     private debug = true;
