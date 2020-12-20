@@ -77,6 +77,7 @@ routes.forEach((route, idx) => {
 let sum = 0;
 buses.forEach((bus) => sum += bus.product);
 
-let reducedRemainder = sum - prod * sum/prod;
+let reducedRemainder = sum - prod * Math.floor(sum/prod);
 
 console.log(prod-reducedRemainder);
+console.log(prod%reducedRemainder);
